@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: ecommerce application
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: none
+        show-sql: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce
+    username: postgres
+    password: root
+    initialization-mode: always
+    initialize: true
+    continue-on-error: true
