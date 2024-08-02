@@ -7,12 +7,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "customer")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
 
     @Id

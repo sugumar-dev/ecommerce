@@ -13,6 +13,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/ecommerce-db
     username: postgres
     password: root
-    initialization-mode: always
-    initialize: true
-    continue-on-error: true
+
+server:
+  servlet:
+    context-path: /ecommerce

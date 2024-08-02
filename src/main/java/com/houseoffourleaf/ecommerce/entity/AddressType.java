@@ -4,9 +4,17 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "address_type")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class AddressType {
 
     @Id
@@ -17,5 +25,5 @@ public class AddressType {
     private String name;
 
     @Column(name = "active_ind", columnDefinition = "char(1) default 'N'", nullable = false)
-    private char activeInd;
+    private char activeIndicator;
 }

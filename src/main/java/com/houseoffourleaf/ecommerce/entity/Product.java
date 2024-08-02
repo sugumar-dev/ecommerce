@@ -1,12 +1,20 @@
 package com.houseoffourleaf.ecommerce.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "product")
-public class Product {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Product extends Audit{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,11 +45,13 @@ public class Product {
     @Column(name = "image_url", columnDefinition = "varchar[]")
     private String[] imageUrl; // Assuming image URLs are stored as an array
 
-    @Column(name = "product_type")
-    private String productType;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_type")
+    private ProductType productType;
 
-    @Column(name = "product_material")
-    private String productMaterial;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_material")
+    private ProductMaterial productMaterial;
 
     @Column(name = "total_stock")
     private Integer totalStock;
@@ -55,13 +65,15 @@ public class Product {
     @Column(name = "new_arrivals")
     private char newArrivals;
 
-    @Column(name = "product_category")
-    private String productCategory;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_category")
+    private ProductCategory productCategory;
 
-    @Column(name = "product_color")
-    private String productColor;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_color")
+    private ProductColor productColor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "offer_id")
     private Offer offer;
 

@@ -7,12 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OfferService {
 
-    private final OfferRepository offerRepository;
-
-    @Autowired
-    public OfferService(OfferRepository offerRepository) {
-        this.offerRepository = offerRepository;
-    }
+    private OfferRepository offerRepository;
 
     // Add custom service methods if needed
 }
