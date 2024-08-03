@@ -26,6 +26,9 @@ public class ProductService {
     @Autowired
     private ProductMaterialRepository productMaterialRepository;
 
+    @Autowired
+    private  AuditService auditService;
+
     public ProductMaterialDTO getProductMaterialDetails(String code){
         Optional<ProductMaterial> productMaterial = productMaterialRepository.findById(code);
         return productMaterial.map(ProductMaterialMapper::toDTO).orElse(null);
@@ -41,34 +44,21 @@ public class ProductService {
         if(productOptional.isPresent() && productOptional.get().getActiveIndicator() == 'Y'){
             Product product = productOptional.get();
             product.setActiveIndicator('N');
-            setUpdateAudit(product, loginUser);
+            auditService.setUpdateAudit(product, loginUser);
             productRepository.save(product);
             return true;
         }
        return false;
     }
 
-    private void setAuditData(Audit audit, String loginUser) {
-        setCreateAudit(audit, loginUser);
-        setUpdateAudit(audit, loginUser);
-    }
 
-    public void setCreateAudit(Audit audit, String loginUser) {
-        audit.setInsertUser(loginUser);
-        audit.setInsertTimestamp(LocalDateTime.now());
-    }
-
-    public void setUpdateAudit(Audit audit, String loginUser) {
-        audit.setUpdateUser(loginUser);
-        audit.setUpdateTimestamp(LocalDateTime.now());
-    }
 
     public Boolean activateProductCode(String productCode, String loginUser) {
         Optional<Product> productOptional = productRepository.findByCode(productCode);
         if(productOptional.isPresent() && productOptional.get().getActiveIndicator() == 'N'){
             Product product = productOptional.get();
             product.setActiveIndicator('Y');
-            setUpdateAudit(product, loginUser);
+            auditService.setUpdateAudit(product, loginUser);
             productRepository.save(product);
             return true;
         }
@@ -77,5 +67,10 @@ public class ProductService {
 
     public Boolean updateProduct(ProductDTO productDTO, String productCode, String loginUser) {
         return false;
+    }
+
+    public ProductDTO fetchActiveProductDetailsByCode(String productCode) {
+        Optional<Product> productOptional  = productRepository.findByActiveIndicatorAndCode('Y', productCode);
+        return productOptional.map(ProductMapper::toDto).orElse(null);
     }
 }

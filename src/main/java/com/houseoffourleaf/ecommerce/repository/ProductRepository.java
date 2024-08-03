@@ -13,4 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findAllByActiveIndicator(Character activeIndicator);
 
     Optional<Product> findByCode(String productCode);
+
+    Optional<Product> findByActiveIndicatorAndCode(char activeIndicator, String code);
 }

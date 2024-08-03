@@ -17,3 +17,11 @@ spring:
 server:
   servlet:
     context-path: /ecommerce
+
+error:
+  code:
+    1000:
+      httpStatus: BAD_REQUEST
+      code: ECOM_1000
+      title: Bad Request
+      detail: Bad Request
