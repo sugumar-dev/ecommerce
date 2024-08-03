@@ -15,7 +15,6 @@ public class ProductMapper {
         productDTO.setSpecification(product.getSpecification());
         productDTO.setPrice(product.getPrice());
         productDTO.setActiveIndicator(product.getActiveIndicator());
-        productDTO.setImageUrl(product.getImageUrl());
         productDTO.setProductType(product.getProductType()!=null? ProductTypeMapper.toDTO(product.getProductType()):null);
         productDTO.setProductMaterial(product.getProductMaterial()!=null? ProductMaterialMapper.toDTO(product.getProductMaterial()):null);
         productDTO.setTotalStock(product.getTotalStock());
@@ -38,7 +37,6 @@ public class ProductMapper {
         product.setSpecification(productDTO.getSpecification());
         product.setPrice(productDTO.getPrice());
         product.setActiveIndicator(productDTO.getActiveIndicator());
-        product.setImageUrl(productDTO.getImageUrl());
       //  product.setProductType(productDTO.getProductType());
         product.setProductMaterial(ProductMaterialMapper.toEntity(productDTO.getProductMaterial()));
         product.setTotalStock(productDTO.getTotalStock());

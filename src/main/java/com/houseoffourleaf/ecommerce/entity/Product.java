@@ -42,9 +42,6 @@ public class Product extends Audit{
     @Column(name = "active_ind")
     private char activeIndicator;
 
-    @Column(name = "image_url", columnDefinition = "varchar[]")
-    private String[] imageUrl; // Assuming image URLs are stored as an array
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_type")
     private ProductType productType;

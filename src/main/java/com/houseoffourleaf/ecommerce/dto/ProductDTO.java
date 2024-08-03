@@ -15,7 +15,6 @@ public class ProductDTO {
     private String specification;
     private double price;
     private char activeIndicator;
-    private String[] imageUrl;
     private ProductTypeDTO productType;
     private ProductMaterialDTO productMaterial;
     private Integer totalStock;
